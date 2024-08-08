@@ -1,0 +1,50 @@
+<div class="h-screen flex items-center justify-center bg-slate-200">
+  
+  <form [formGroup]="form" (ngSubmit)="onSubmit()"
+        class="shadow-md rounded-md p-5 bg-white w-1/2">
+    <div class="py-4">
+      <h1 class="font-bold py-2 text-blue-800">Login</h1>
+      <h5 class="text-slate-600 text-base text-blue-500">
+        Login your account
+      </h5>
+    </div>
+    <!-- Name -->
+    <mat-form-field apperance="fill" class="w-full">
+      <mat-label>Email:</mat-label>
+      <mat-icon color="primary" matPrefix>email</mat-icon>
+      <input matInput formControlName="email" required
+             placeholder="Insert email">
+      <mat-error *ngFor="let error of getErrors(form.get('email')!,
+'Email')">
+        {{error}}
+      </mat-error>
+    </mat-form-field>
+    <!-- Lat -->
+    <mat-form-field apperance="fill" class="w-full">
+      <mat-label>Password:</mat-label>
+      <mat-icon color="primary" matPrefix>lock</mat-icon>
+      <input matInput type="password" formControlName="password" required
+             placeholder="Insert Password">
+      <mat-error *ngFor="let error of getErrors(form.get('password')!,
+'Password')">
+        {{error}}
+      </mat-error>
+    </mat-form-field>
+    <div>
+      <button mat-flat-button color="primary" class="w-full border border-slate-200 mt-4 
+                  rounded-md disabled:bg-gray-400 py-2 px-3 bg-blue-400 text-white font-bold"
+              type="submit">
+        Login
+      </button>
+      <button mat-flat-button color="secondary"
+              [routerLink]="['/']">
+        Cancel
+      </button>
+
+      <div class="my-5">
+        <span class="text-slate-600">Don't have an account?</span>
+        <a class="text-blue-700" [routerLink]="['/register']"> Register </a>
+      </div>
+    </div>
+  </form>
+</div>

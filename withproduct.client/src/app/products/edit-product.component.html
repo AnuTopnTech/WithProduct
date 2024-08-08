@@ -1,0 +1,64 @@
+<div class="h-screen flex items-center justify-center bg-slate-200">
+  <h1 class="font-bold py-2 text-blue-800">{{name}}</h1>
+  <p *ngIf="id && !product"><em>Loading…</em></p>
+  <div class="shadow-md rounded-md p-5 bg-white w-1/2" [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <!-- TITLE -->
+    <mat-form-field apperance="fill" class="w-full">
+      <mat-error *ngIf="form.controls['title'].errors?.['required']">
+        Title is required.
+      </mat-error>
+      <mat-label>Title:</mat-label>
+      <input matInput formControlName="title" required
+             placeholder="Type a title">
+    </mat-form-field>
+
+    <!-- Category -->
+    <mat-form-field apperance="fill" class="w-full">
+      <mat-error *ngIf="form.controls['category'].errors?.['required']">
+        Category is required.
+      </mat-error>
+      <mat-label>Category:</mat-label>
+      <input matInput formControlName="category" required
+             placeholder="Type a category">
+    </mat-form-field>
+
+    <!-- Quantity-->
+    <mat-form-field apperance="fill" class="w-full">
+      <mat-error *ngIf="form.controls['quantity'].errors?.['required']">
+        Quantity is required.
+      </mat-error>
+      <mat-label>Quantity:</mat-label>
+      <input matInput formControlName="quantity" required
+             placeholder="Type a quantity">
+    </mat-form-field>
+
+    <!-- PRICE-->
+    <mat-form-field apperance="fill" class="w-full">
+      <mat-error *ngIf="form.controls['price'].errors?.['required']">
+        Price is required.
+      </mat-error>
+      <mat-label>Price:</mat-label>
+      <input matInput formControlName="price" required
+             placeholder="Type a price">
+    </mat-form-field>
+    <!-- Quantity--> 
+    <mat-form-field apperance="fill" class="w-full">
+      <mat-label>ImageLink:</mat-label>
+      <input matInput formControlName="image" required
+             placeholder="Type a image">
+    </mat-form-field>
+
+    <div>
+      <button mat-flat-button color="primary"  class="w-full border border-slate-200 mt-4 
+                  rounded-md disabled:bg-gray-400 py-2 px-3 bg-blue-400 text-white font-bold"
+              type="submit" (click)="onSubmit()" [disabled]="!form.valid">
+        {{ this.id ? "Save" : "Add" }}
+      </button>
+      <button mat-flat-button color="secondary"
+              [routerLink]="['/products']">
+        Cancel
+      </button>
+    </div>
+  </div>
+  </div>
